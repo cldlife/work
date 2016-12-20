@@ -1,0 +1,1 @@
+ALTER TABLE `game_tgqcqm_tms` ADD `ori_name` VARCHAR(60) NOT NULL DEFAULT '' COMMENT '原文件名' AFTER `uri`;
