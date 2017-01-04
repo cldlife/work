@@ -70,7 +70,7 @@ define('APP_STORAGE_FILE_AVATAR_DIR', APP_STORAGE_FILE_DIR . DIRECTORY_SEPARATOR
 define("APP_WEB_DIR", APP_ROOT_DIR . DIRECTORY_SEPARATOR . 'web');
 
 //数据库前缀
-define('APP_DB_PRIFIX', 'dev_wanzhu_');
+define('APP_DB_PRIFIX', 'dev_cldlife_');
 
 //临时文件目录
 define('APP_TMP_DIR', APP_LOG_DIR . '/');

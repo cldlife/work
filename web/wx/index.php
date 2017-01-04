@@ -14,7 +14,6 @@ require_once (APP_YII_FRAMEWORK_FILE);
 //setting dependent packages
 Yii::setPathOfAlias('lib', APP_LIB_DIR);
 Yii::setPathOfAlias('src', APP_SRC_SERVICE_DIR);
-
 //running
 $config = CUR_APP_ROOT . DIRECTORY_SEPARATOR . 'protected'. DIRECTORY_SEPARATOR . 'config/main.php';
 Yii::createWebApplication($config)->run();
