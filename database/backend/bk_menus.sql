@@ -10,4 +10,4 @@ CREATE TABLE `bk_menus` (
   `created_time` int(10) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `idx_ordid` (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台管理菜单配置表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台管理菜单配置';
