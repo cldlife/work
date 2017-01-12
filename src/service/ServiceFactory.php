@@ -26,4 +26,15 @@ final class ServiceFactory {
 		return self::$services ["CommonService"];
 	}
 
+	/**
+	 * @return CommonService
+	 */
+	public function createBkAdminService() {
+		if (! self::$services ["BkAdminService"]) {
+			require_once APP_SRC_SERVICE_DIR . '/BkAdminService.php';
+			self::$services ["BkAdminService"] = new BkAdminService ();
+		}
+		return self::$services ["BkAdminService"];
+	}
+
 }
