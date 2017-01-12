@@ -138,12 +138,9 @@ $("#btn-submit-a").click(function () {
           $.addtip({message: "保存成功", autoclose: 3});
           window.location.href="<?php echo $this->getDeUrl('permission/newuser', array('id' => $this->permissionId))?>";
   		} else if(res.code == -1) {
-		  $.addtip({type: "error", message: "管理员 '"+mobile+"' 已开通，可进行权限设置。", autoclose: 3});
+		  $.addtip({type: "error", message: "此账号已开通，可进行权限设置。", autoclose: 3});
   		} else if(res.code == -2) {
-  		  $.addtip({type: "error", message: "'"+mobile+"' 该手机号不存在，请重新输入。", autoclose: 3});
-  		  $("#mobile").focus();
-  		} else if(res.code == -3) {
-  		  $.addtip({type: "error", message: "'"+mobile+"' 该手机号格式不正确，请重新输入。", autoclose: 3});
+  		  $.addtip({type: "error", message: "用户名不存在，重新输入。", autoclose: 3});
   		  $("#mobile").focus();
   		} else {
 		  $.addtip({type: "error", message: "保存失败，请重试", autoclose: 3});

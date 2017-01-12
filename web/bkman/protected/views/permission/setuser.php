@@ -1,73 +1,86 @@
 <div id="content">
-    <div class="itemtitle">
-   	<h3><?php echo $this->title?><!--&nbsp;&nbsp;<a href="<?php echo $this->getDeUrl('help')?>" style="color:#0066ff;font-size:12px;font-weight:normal">点击查看使用帮助&gt;&gt;</a>--></h3>
-    </div>
+	<div class="itemtitle">
+		<h3><?php echo $this->title?>
+			<!--&nbsp;&nbsp;<a href="<?php echo $this->getDeUrl('help')?>" style="color:#0066ff;font-size:12px;font-weight:normal">点击查看使用帮助&gt;&gt;</a>-->
+		</h3>
+	</div>
 
-    <div class="itemlist">
-        <div class="search submit">
-          <table>
-            <tbody>
-               <tr>
-                <td>
-                 <span>设置权限：<?php echo $adminUserInfo['admin_name']?></span>
-                 <a class="confirm_btn" name="btn-submit-a"><span>&nbsp;保存&nbsp;</span></a>
-                 </td>
-               </tr>
-            </tbody>
-          </table>
-        </div>
-    </div>
+	<div class="itemlist">
+		<div class="search submit">
+			<table>
+				<tbody>
+					<tr>
+						<td><span>设置权限：<?php echo $adminUserInfo['admin_name']?></span> <a
+							class="confirm_btn" name="btn-submit-a"><span>&nbsp;保存&nbsp;</span></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-    <div class="itemlist">
-    <table>
-      <thead>
-      <tr>
-          <th width="100%"><input type="checkbox" id="selectAllChk"> 权限点</th>
-      </tr>
-      </thead>
-      <tbody id="contentTbody">
+	<div class="itemlist">
+		<table>
+			<thead>
+				<tr>
+					<th width="100%"><input type="checkbox" id="selectAllChk"> 权限点</th>
+				</tr>
+			</thead>
+			<tbody id="contentTbody">
       	<?php
-      	if ($adminPermissionList) :
-      	  foreach ($adminPermissionList as $permission) : ?>
+							if ($adminPermissionList) :
+								foreach ( $adminPermissionList as $permission ) :
+									?>
     	  	<tr id="row-parent-<?php echo $permission['id']?>">
-    	  	  <td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" value="<?php echo $permission['id']?>" name="permission_ids[]" <?php if (in_array($permission['id'], $adminUserInfo['permission_ids'])) echo 'checked="true"';?> data-id='<?php echo $permission['id']?>' onclick="selectAllChild(this)"> <b><?php echo $permission['name']?></b></td>
-    	  	</tr>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"
+						value="<?php echo $permission['id']?>" name="permission_ids[]"
+						<?php if (in_array($permission['id'], $adminUserInfo['permission_ids'])) echo 'checked="true"';?>
+						data-id='<?php echo $permission['id']?>'
+						onclick="selectAllChild(this)"> <b><?php echo $permission['name']?></b></td>
+				</tr>
     	  	<?php if ($permission['sub']): ?>
   	  	  <tr id="row-<?php echo $permission['id']?>">
-    	  	  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         	  	  <?php foreach ($permission['sub'] as $subPermission):?>
-        	  	  &nbsp;&nbsp;<input type="checkbox" value="<?php echo $subPermission['id']?>" name="permission_ids[]" <?php if (in_array($subPermission['id'], $adminUserInfo['permission_ids'])) echo 'checked="true"';?> onclick="selectParent(this, <?php echo $permission['id']?>);">
+        	  	  &nbsp;&nbsp;<input type="checkbox"
+						value="<?php echo $subPermission['id']?>" name="permission_ids[]"
+						<?php if (in_array($subPermission['id'], $adminUserInfo['permission_ids'])) echo 'checked="true"';?>
+						onclick="selectParent(this, <?php echo $permission['id']?>);">
         	  	  <?php if ($subPermission['is_display']) : ?>
-        	  	  <a target="_blank" title="点击查看" href="<?php echo $this->getDeUrl('' . $subPermission['uri_alias'])?>"><?php echo $subPermission['name']?></a>
+        	  	  <a target="_blank" title="点击查看"
+						href="<?php echo $this->getDeUrl('' . $subPermission['uri_alias'])?>"><?php echo $subPermission['name']?></a>
         	  	  <?php else :?>
         	  	  <?php echo $subPermission['name']?>
         	  	  <?php endif;?>
     	  	  	  <?php endforeach;?>
     	  	  </td>
-    	  	</tr>
+				</tr>
     	  	<?php endif;?>
   	  	<?php
-  	  	  endforeach;
-  	  	endif;?>
-      </tbody>
-      <tfoot class="tfoot"></tfoot>
-    </table>
-    </div>
+								endforeach
+								;
 
-    <div class="itemlist">
-        <div class="search submit">
-          <table>
-            <tbody>
-               <tr>
-                <td>
-                 <span>设置权限：<?php echo $adminUserInfo['admin_name']?></span>
-                 <a class="confirm_btn" name="btn-submit-a"><span>&nbsp;保存&nbsp;</span></a>
-                 </td>
-               </tr>
-            </tbody>
-          </table>
-        </div>
-    </div>
+
+  	  	endif;
+							?>
+      </tbody>
+			<tfoot class="tfoot"></tfoot>
+		</table>
+	</div>
+
+	<div class="itemlist">
+		<div class="search submit">
+			<table>
+				<tbody>
+					<tr>
+						<td><span>设置权限：<?php echo $adminUserInfo['admin_name']?></span> <a
+							class="confirm_btn" name="btn-submit-a"><span>&nbsp;保存&nbsp;</span></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 <br>
 <script type="text/javascript">

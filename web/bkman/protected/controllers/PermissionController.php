@@ -107,7 +107,7 @@ class PermissionController extends BaseController {
 			// 参数验证
 			if (! $username || ! $passwd || ! $adminName)
 				$this->outputJsonData ( array (
-						'code' => - 3
+						'code' => - 2
 				) );
 				// 验证用户权限
 			$user = $this->getBkAdminService ()->getBkAdminUserByUserNameAndPasswd ( $username, $passwd );
@@ -168,10 +168,8 @@ class PermissionController extends BaseController {
 	private function doSetuser() {
 		$action = $this->getSafeRequest ( 'action' );
 		$uid = $this->getSafeRequest ( 'uid', 0, 'GET', 'int' );
-
 		// 获取管理员信息
 		$adminUserInfo = $this->getBkAdminService ()->getBkAdminUserByUid ( $uid );
-
 		// 保存设置
 		if ($action == 'save') {
 			$permissionIds = $this->getSafeRequest ( 'permission_ids', '', 'POST', 'array' );
@@ -180,6 +178,7 @@ class PermissionController extends BaseController {
 
 				// 计算差值
 			$delPermissionIds = array_diff ( $adminUserInfo ['permission_ids'], $permissionIds );
+
 			if ($delPermissionIds) {
 				$this->getBkAdminService ()->deleteBkAdminUserPermission ( $uid, $delPermissionIds );
 			}
@@ -187,7 +186,7 @@ class PermissionController extends BaseController {
 			$addPermissionIds = array_diff ( $permissionIds, $adminUserInfo ['permission_ids'] );
 			if ($addPermissionIds) {
 				foreach ( $addPermissionIds as $permissionId ) {
-					$this->getBkAdminService ()->saveBkAdminUserPermission ( array (
+					$this->getBkAdminService()->saveBkAdminUserPermission ( array (
 							'uid' => $uid,
 							'permission_id' => $permissionId
 					) );

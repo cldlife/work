@@ -27,6 +27,11 @@ class BaseController extends CController {
 		return ServiceFactory::getInstance ()->createBkAdminService ();
 	}
 
+	//获取ArticleService
+	public function getArticleService() {
+		return ServiceFactory::getInstance()->createArticleService();
+	}
+
 	/**
 	 * 验证访问uri是否合法
 	 */
