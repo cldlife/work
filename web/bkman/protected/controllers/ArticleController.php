@@ -26,12 +26,12 @@ class ArticleController extends BaseController {
   public function errorRedirect () {
     $this->redirect($this->getDeUrl('main/error', array('id' => -404)));
   }
-  
+
   /**
    * @desc  文章查询
    */
   private function doIndex() {
-    
+
     $page = $this->getSafeRequest('page', 1, 'GET', 'int');
     $category = $this->getSafeRequest('category', 0, 'GET', 'int');
     $keyword = $this->getSafeRequest('keyword', '', 'GET', 'string');
@@ -49,7 +49,7 @@ class ArticleController extends BaseController {
     if ($listCount < $pageSize) {
       $listPageCount = ($page - 1) * $pageSize + $listCount;
     }
-    
+
     $show = array();
     $show['curPage'] = $page;
     $show['category'] = self::$category;
@@ -59,24 +59,24 @@ class ArticleController extends BaseController {
     $this->title = '文章列表';
     $this->render('list', $show);
   }
-  
+
   /**
    * @desc 添加/编辑文章
    */
   private function doAddEdit() {
     $action = $this->getSafeRequest('action');
     $code = $this->getSafeRequest('code', 0, 'GET', 'int');
-    $page = $this->getSafeRequest('page', 1, 'GET', 'int');    
+    $page = $this->getSafeRequest('page', 1, 'GET', 'int');
     $articleid = $this->getSafeRequest('article_id', 0, 'GET', 'int');
 
     $title = $this->getSafeRequest('title', '', 'POST', 'string');
-    $content = $this->getSafeRequest('editorContent', '', 'POST', 'string'); 
-    $description = $this->getSafeRequest('description', '', 'POST', 'string'); 
+    $content = $this->getSafeRequest('editorContent', '', 'POST', 'string');
+    $description = $this->getSafeRequest('description', '', 'POST', 'string');
     $template_id = $this->getSafeRequest('template_id', 0, 'POST', 'int');
     $category_id = $this->getSafeRequest('category_id', 0, 'POST', 'int');
-    $is_shop = $this->getSafeRequest('is_shop', 0, 'POST', 'int'); 
-    $is_comment = $this->getSafeRequest('is_comment', 0, 'POST', 'int'); 
-  
+    $is_shop = $this->getSafeRequest('is_shop', 0, 'POST', 'int');
+    $is_comment = $this->getSafeRequest('is_comment', 0, 'POST', 'int');
+
     //获取文章信息
     $article = $this->getArticleService()->getArticleById($articleid);
 
@@ -93,9 +93,9 @@ class ArticleController extends BaseController {
         if ($is_shop != $article['is_shop']) $updateFields['is_shop'] = $is_shop;
         if ($is_comment != $article['is_comment']) $updateFields['is_comment'] = $is_comment;
         $this->getArticleService()->updateArticle($article['id'], $updateFields);
-        $this->redirect($this->getDeUrl('article/addedit', array('id' => $this->permissionId, 'article_id' => $article['id'], 'code' => 1)));     
-      } else { 
-        //添加文章 
+        $this->redirect($this->getDeUrl('article/addedit', array('id' => $this->permissionId, 'article_id' => $article['id'], 'code' => 1)));
+      } else {
+        //添加文章
         if ($title && $content) {
 
           $article = $this->getArticleService()->addArticle(array(
@@ -119,19 +119,13 @@ class ArticleController extends BaseController {
     $show = array();
     $show['code'] = $code;
     $show['curPage'] = $page;
-    $show['editorContent'] = kissy::init(array(
-      'uploadUrl' => $this->getDeUrl('util/upload',array('id' => $this->permissionId)),
-      'uploadFileToken' => Yii::app()->getRequest()->getCsrfToken(),
-      'content' => $article['content'], 
-      'dataId' => $article['id']
-    ));
     $show['category'] = self::$category;
     $show['template'] = self::$template;
     $show['article'] = $article;
     $this->title = $article['id'] ? '编辑文章' : '添加文章';
     $this->render('addedit', $show);
   }
-  
+
   /**
    * @desc 删除文章信息 (ajax异步)
    */
@@ -140,7 +134,7 @@ class ArticleController extends BaseController {
     $ret = array();
     $updateFields = array();
     $ret['code'] = 0;
-    $updateFields['status'] = 1; 
+    $updateFields['status'] = 1;
     //获取文章信息
     $article = $this->getArticleService()->getArticleById($articleid);
     if ($article) {
@@ -148,6 +142,6 @@ class ArticleController extends BaseController {
     }
     $this->outputJsonData($ret);
   }
-  
+
 }
 ?>
