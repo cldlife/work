@@ -30,12 +30,6 @@ if (APP_DEBUG) {
   error_reporting(0);
 }
 
-//距离计算配置
-//地球半径, 平均半径为6371.393km (单位m)
-define('EARTH_RADIUS', 6371393);
-define('DISTANCE_LIMIT', 1000);
-define('DISTANCE_OFFSET', 100);
-
 //app base dir config (config | lib | log | shell | src | storage | web)
 define("APP_ROOT_DIR", dirname(dirname(__FILE__)));
 define("APP_CONFIG_DIR", APP_ROOT_DIR . DIRECTORY_SEPARATOR . 'config');
@@ -98,22 +92,12 @@ define('APP_DYNAMIC_FILE_RULE_360x360', '_360x360.jpg');
 define('APP_DYNAMIC_FILE_RULE_300x200', '_300x200.jpg');
 
 //WEB公共URL配置
-define('WEB_QW_APP_DOMAIN_SUFFIX', 'wanzhuwenhua.com');
-define('WEB_QW_APP_DOMAIN', 'http://' . WEB_QW_APP_DOMAIN_SUFFIX);
-define('WEB_QW_APP_WX_DOMAIN', 'http://wx.' . WEB_QW_APP_DOMAIN_SUFFIX);
-define('WEB_QW_APP_API_DOMAIN', 'http://api.' . WEB_QW_APP_DOMAIN_SUFFIX);
-define('WEB_QW_APP_M_DOMAIN', 'http://m.' . WEB_QW_APP_DOMAIN_SUFFIX);
-
 
 //静态资源URL配置
-if (!defined("WEB_QW_APP_STATIC_FILE_DOMAIN_SUFFIX")) define('WEB_QW_APP_STATIC_FILE_DOMAIN_SUFFIX', '//img.shihuo.me');
+if (!defined("WEB_QW_APP_STATIC_FILE_DOMAIN_SUFFIX")) define('WEB_QW_APP_STATIC_FILE_DOMAIN_SUFFIX', '//ui.shihuo.dve');
 if (!defined("WEB_QW_APP_FILE_UI_URL")) define('WEB_QW_APP_FILE_UI_URL', WEB_QW_APP_STATIC_FILE_DOMAIN_SUFFIX . '/' . 'ui');
 
-
 //附件上传URL配置
-if (!defined("WEB_QW_APP_FILE_DOMAIN_SUFFIX")) define('WEB_QW_APP_FILE_DOMAIN_SUFFIX', 'shiyi11.com');
-if (!defined("WEB_QW_APP_FILE_DOMAIN")) define('WEB_QW_APP_FILE_DOMAIN', 'http://tgf.' . WEB_QW_APP_FILE_DOMAIN_SUFFIX);
-if (!defined("WEB_QW_APP_DYNAMIC_FILE_DOMAIN")) define('WEB_QW_APP_DYNAMIC_FILE_DOMAIN', 'http://tgf1.' . WEB_QW_APP_FILE_DOMAIN_SUFFIX);
 
 //set lib yii framework file
 define('APP_YII_FRAMEWORK_FILE', APP_LIB_FRAMEWORK_DIR . DIRECTORY_SEPARATOR . 'yii/yii.php');
