@@ -15,6 +15,11 @@ class BaseDAO extends BaseConstant {
 		return $this->getConnection ( self::DB_S_BACKEND, $slave );
 	}
 
+	// 获取 backend DB 连接
+	protected function getArticleConnection($slave = FALSE) {
+		return $this->getConnection ( self::DB_S_ARTICLE, $slave );
+	}
+
 	/**
 	 * 获得数据库连接，所有继承自BaseDAO的DAO,连接都只能从此获得
 	 *
@@ -31,24 +36,24 @@ class BaseDAO extends BaseConstant {
 	 *
 	 * @return Memcache
 	 */
-// 	public function getMemcache() {
-// 		return MemcacheFactory::getInstance ()->getMemcache ( self::CACHE_NODE_WEBFRONT );
-// 	}
-// 	public function getMemcacheNameSpace($spaceName, $cacheTime) {
-// 		return MemcacheFactory::getInstance ()->createMemcacheNameSpace ( $spaceName, $cacheTime, self::CACHE_NODE_WEBFRONT );
-// 	}
-// 	public function getBkAdminMemcache() {
-// 		return MemcacheFactory::getInstance ()->getMemcache ( self::CACHE_NODE_BKADMIN );
-// 	}
-// 	public function getBkAdminMemcacheNameSpace($spaceName, $cacheTime) {
-// 		return MemcacheFactory::getInstance ()->createMemcacheNameSpace ( $spaceName, $cacheTime, self::CACHE_NODE_BKADMIN );
-// 	}
-// 	public function getWeigameMemcache() {
-// 		return MemcacheFactory::getInstance ()->getMemcache ( self::CACHE_NODE_WEIGAME );
-// 	}
-// 	public function getWeigameMemcacheNameSpace($spaceName, $cacheTime) {
-// 		return MemcacheFactory::getInstance ()->createMemcacheNameSpace ( $spaceName, $cacheTime, self::CACHE_NODE_WEIGAME );
-// 	}
+	// public function getMemcache() {
+	// return MemcacheFactory::getInstance ()->getMemcache ( self::CACHE_NODE_WEBFRONT );
+	// }
+	// public function getMemcacheNameSpace($spaceName, $cacheTime) {
+	// return MemcacheFactory::getInstance ()->createMemcacheNameSpace ( $spaceName, $cacheTime, self::CACHE_NODE_WEBFRONT );
+	// }
+	// public function getBkAdminMemcache() {
+	// return MemcacheFactory::getInstance ()->getMemcache ( self::CACHE_NODE_BKADMIN );
+	// }
+	// public function getBkAdminMemcacheNameSpace($spaceName, $cacheTime) {
+	// return MemcacheFactory::getInstance ()->createMemcacheNameSpace ( $spaceName, $cacheTime, self::CACHE_NODE_BKADMIN );
+	// }
+	// public function getWeigameMemcache() {
+	// return MemcacheFactory::getInstance ()->getMemcache ( self::CACHE_NODE_WEIGAME );
+	// }
+	// public function getWeigameMemcacheNameSpace($spaceName, $cacheTime) {
+	// return MemcacheFactory::getInstance ()->createMemcacheNameSpace ( $spaceName, $cacheTime, self::CACHE_NODE_WEIGAME );
+	// }
 
 	/**
 	 * 获得更新语句中的set子句，如：set a=1,b='ket'

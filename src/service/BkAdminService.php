@@ -68,7 +68,6 @@ class BkAdminService extends BaseService {
 		}
 		$BkAdminUser = $this->getBkAdminDAO ()->findBkAdminUserByUid ( $uid );
 		if ($detail && $BkAdminUser && $BkAdminUser ['uid']) {
-			// $BkAdminUser['user_info'] = $this->getUserByUid($BkAdminUser['uid']);
 			$BkAdminUser ['permission_ids'] = array ();
 			$permissionIds = $this->getBkAdminDAO ()->findBkAdminUserPermissionByUid ( $BkAdminUser ['uid'] );
 			foreach ( $permissionIds as $permissionId ) {
@@ -132,5 +131,26 @@ class BkAdminService extends BaseService {
 			throw new Exception ( 'fields is null...' );
 		}
 		return $this->getBkAdminDAO ()->insertBkAdminUser ( $fields );
+	}
+
+	/**
+	 * save admin user permission
+	 */
+	public function saveBkAdminUserPermission($fields) {
+		if (! $fields ['uid'] || ! $fields ['permission_id']) {
+			throw new Exception ( 'uid or permission_id is null...' );
+		}
+		return $this->getBkAdminDAO ()->insertBkAdminUserPermission ( $fields );
+	}
+
+	/**
+	 * delete admin user permission
+	 */
+	public function deleteBkAdminUserPermission($uid, $permission_ids = array()) {
+		if (! $uid) {
+			throw new Exception ( 'uid is null...' );
+		}
+		$permission_ids = implode ( ',', $permission_ids );
+		return $this->getBkAdminDAO ()->deleteBkAdminUserPermission ( $uid, $permission_ids );
 	}
 }

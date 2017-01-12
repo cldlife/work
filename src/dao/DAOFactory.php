@@ -34,4 +34,16 @@ final class DaoFactory {
 		}
 		return self::$daoSet ['BkAdminDAO'];
 	}
+
+	/**
+	 *
+	 * @return ArticleDAO
+	 */
+	public function createArticleDAO() {
+		if (! isset ( self::$daoSet ['ArticleDAO'] )) {
+			require_once APP_SRC_DAO_DIR . '/ArticleDAO.php';
+			self::$daoSet ['ArticleDAO'] = new ArticleDAO ();
+		}
+		return self::$daoSet ['ArticleDAO'];
+	}
 }

@@ -37,4 +37,15 @@ final class ServiceFactory {
 		return self::$services ["BkAdminService"];
 	}
 
+	/**
+	 * @return ArticleService
+	 */
+	public function createArticleService() {
+		if (! self::$services ["ArticleService"]) {
+			require_once APP_SRC_SERVICE_DIR . '/ArticleService.php';
+			self::$services ["ArticleService"] = new ArticleService ();
+		}
+		return self::$services ["ArticleService"];
+	}
+
 }

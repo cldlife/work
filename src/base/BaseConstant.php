@@ -10,5 +10,6 @@ abstract class BaseConstant {
 	const DB_S_SLAVE = 'slave';
 
 	const DB_S_BACKEND = 'backend';
+	const DB_S_ARTICLE = 'article';
 
 }

@@ -62,7 +62,7 @@ class BkAdminDAO extends BaseDao {
 		if (! $uid || ! $fields) {
 			throw new Exception ( 'uid is null...' );
 		}
-		$updateFields = array();
+		$updateFields = array ();
 		if ($fields ['last_login_time'])
 			$updateFields ['last_login_time'] = $fields ['last_login_time'];
 		if ($fields ['updated_time'])
@@ -98,18 +98,56 @@ class BkAdminDAO extends BaseDao {
 	}
 
 	/**
-	 * @desc insert bk_user
+	 * insert bk_user
 	 */
-	public function insertBkAdminUser ($fields) {
-		if (!$fields['username'] || !$fields['admin_name']  || !$fields['passwd']) {
-			throw new Exception('username,admin_name,passwdis null...');
+	public function insertBkAdminUser($fields) {
+		if (! $fields ['username'] || ! $fields ['admin_name'] || ! $fields ['passwd']) {
+			throw new Exception ( 'username,admin_name,passwdis null...' );
 		}
-		$res = array();
-		$insertFields = array();
-		$insertFields['username'] = $fields['username'];
-		$insertFields['passwd'] = $fields['passwd'];
-		$insertFields['admin_name'] = $fields['admin_name'];
-		$res = $this->insert($this->getBackendConnection(), 'bk_user', $insertFields);
+		$res = array ();
+		$insertFields = array ();
+		$insertFields ['username'] = $fields ['username'];
+		$insertFields ['passwd'] = $fields ['passwd'];
+		$insertFields ['admin_name'] = $fields ['admin_name'];
+		$res = $this->insert ( $this->getBackendConnection (), 'bk_user', $insertFields );
 		return $res;
+	}
+
+	/**
+	 * insert bk_user_permissions
+	 */
+	public function insertBkAdminUserPermission($fields) {
+		if (! $fields ['uid'] || ! $fields ['permission_id']) {
+			throw new Exception ( 'uid or permission_id is null...' );
+		}
+		$res = array ();
+		$fields ['created_time'] = 'NONE';
+		$fields ['updated_time'] = 'NONE';
+		$res = $this->insert ( $this->getBackendConnection (), 'bk_user_permissions', $fields );
+		return $res;
+	}
+
+	/**
+	 * delete user_permission
+	 *
+	 * @param $permission_ids=null, delelte
+	 *        	all
+	 */
+	public function deleteBkAdminUserPermission($uid, $permission_ids) {
+		if (! $uid) {
+			throw new Exception ( 'uid is null...' );
+		}
+		$whereSQL = '';
+		if ($permission_ids) {
+			$whereSQL = " AND permission_id IN ({$permission_ids})";
+		}
+		$stmt = $this->getBackendConnection ()->prepare ( "DELETE FROM bk_user_permissions WHERE uid = :uid {$whereSQL}" );
+		$stmt->bindValue ( ':uid', $uid, PDO::PARAM_INT );
+		$stmt->execute ();
+		$rowCount = $stmt->rowCount ();
+		if ($rowCount) {
+			return TRUE;
+		}
+		return FALSE;
 	}
 }
