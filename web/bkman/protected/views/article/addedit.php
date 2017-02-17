@@ -1,7 +1,7 @@
 <div id="content">
     <div class="itemtitle">
    	<h3><span name='page_title'><?php echo $this->title?></span> <a href="<?php echo $this->getDeUrl('article/index', array('id' => $this->permissionId, 'page' => $curPage))?>" style="color:#0066ff;font-size:12px;font-weight:normal">返回&gt;&gt;</a></h3>
-    </div>     
+    </div>
     <div class="itemlist">
         <div class="search submit">
           <table>
@@ -19,12 +19,12 @@
           </table>
         </div>
     </div>
-    
+
     <div class="itemlist">
     <?php echo CHtml::beginForm($this->getDeUrl('article/addedit', array('id' => $this->permissionId)), 'post', array('id' => 'submitForm', 'name' => 'submitForm', 'enctype' => 'multipart/form-data'))?>
     <table>
     	<tbody id="contentTbody">
-         
+
 
           <tr>
             <th width="10%" style="text-align:center">模版</th>
@@ -52,16 +52,16 @@
                 <textarea type="text" class="txt" style="width:420px;height:100px" id="description" name="description"><?php echo $article['description']?></textarea>
             </td>
           </tr>
-    	  	
+
     	  	<tr>
         	  <th width="10%" style="text-align:center">内容</th>
         	  <td>
-              <?php echo $editorContent; ?>
+				 <textarea type="text" class="txt" style="width:420px;height:100px" id="text_content" name="content"><?php echo $article['description']?></textarea>
         	  	<br>
         	    <span class="txt_tip"><i></i>必填项</span>
         	  </td>
     	  	</tr>
-    	  	
+
     	  	<tr>
             <th width="10%" style="text-align:center">是否有购买链接</th>
             <td>
@@ -78,7 +78,7 @@
             </td>
           </tr>
       </tbody>
-      
+
       <tfoot class="tfoot">
       <input type="hidden" name="action" value="submit">
       <input type="hidden" id='article_id' name='article_id' value="<?php echo $article['id']?>">
@@ -86,7 +86,7 @@
     </table>
     <?php echo CHtml::endForm();?>
     </div>
-    
+
     <div class="itemlist">
         <div class="search submit">
           <table>
@@ -122,7 +122,7 @@ $("a[name='btn-submit-a']").click(function () {
     $.addtip({type: "error", message: "请选择模版！", autoclose: 3});
     return false;
   }
-  
+
   var title = $.trim($('#title').val());
   if (!title) {
     $('#title').focus()
@@ -136,10 +136,10 @@ $("a[name='btn-submit-a']").click(function () {
     $.addtip({type: "error", message: "请输入文章描述！", autoclose: 3});
     return false;
   }
-  
-  var content = $.trim(EditorObject.getData());
+
+  var content = $.trim($('#text_content').val());
   if (!content) {
-    $('#editorContent').focus()
+    $('#text_content').focus()
     $.addtip({type: "error", message: "请输入文章内容！", autoclose: 3});
     return false;
   }

@@ -70,7 +70,7 @@ class ArticleController extends BaseController {
     $articleid = $this->getSafeRequest('article_id', 0, 'GET', 'int');
 
     $title = $this->getSafeRequest('title', '', 'POST', 'string');
-    $content = $this->getSafeRequest('editorContent', '', 'POST', 'string');
+    $content = $this->getSafeRequest('content', '', 'POST', 'string');
     $description = $this->getSafeRequest('description', '', 'POST', 'string');
     $template_id = $this->getSafeRequest('template_id', 0, 'POST', 'int');
     $category_id = $this->getSafeRequest('category_id', 0, 'POST', 'int');
