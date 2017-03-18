@@ -5,7 +5,7 @@ return array(
     'slave' => array(),
   ),
   'backend' => array(
-    'master' => array('dbname' => 'dev_cldlife_backend', 'host' => 'dev_wanzhu_DB1', 'user' => 'root', 'password' => '', 'character' => 'utf8mb4'),
+    'master' => array('dbname' => 'dev_cldlife_backend', 'host' => '127.0.0.1', 'user' => 'root', 'password' => '1234576', 'character' => 'utf8mb4'),
     'slave' => array(),
   ),
 );
