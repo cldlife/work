@@ -6,5 +6,6 @@ class IndexController extends BaseController {
 	 */
 	public function actionIndex() {
 		var_dump(Upload::setConfig(array('path'=>1)));
+		echo 222;
 	}
 }
